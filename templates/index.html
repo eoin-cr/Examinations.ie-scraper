@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Examinations.ie Scraper</title>
+</head>
+<body>
+<h1>Please enter the information about the paper you want</h1>
+<form name="selection" action="." method="POST">
+<!--    Asset Tag:<br>-->
+    <select name="exam">
+        <option value="" selected>[Select Exam]</option>
+        <option value="">----</option>
+        <option value="jc">Junior cert</option>
+        <option value="lc">Leaving cert</option>
+        <option value="lb">Leaving cert applied</option>
+    </select>
+    <select name="language">
+        <option value="" selected>[Select Language]</option>
+        <option value="">----</option>
+        <option value="(EV)">English</option>
+        <option value="(IV)">Irish</option>
+    </select>
+    <select name="level" id="">
+        <option value="" selected>[Select Exam Level]</option>
+        <option value="">----</option>
+        <option value="Higher Level">Higher level</option>
+        <option value="Ordinary Level">Ordinary level</option>
+    </select>
+    <select name="subject">
+        <option value="" selected>[Select Subject]</option>
+        <option value="">----</option>
+        <option value="">----LEAVING CERT----</option>
+        <option value="32">Accounting</option>
+        <option value="26">Agricultural Economics</option>
+        <option value="24">Agricultural Science</option>
+        <option value="7">Ancient Greek</option>
+        <option value="20">Applied Mathematics</option>
+        <option value="59">Arabic</option>
+        <option value="14">Art</option>
+        <option value="25">Biology</option>
+        <option value="559">Bulgarian</option>
+        <option value="33">Business</option>
+        <option value="22">Chemistry</option>
+        <option value="8">Classical Studies</option>
+        <option value="29">Construction Studies</option>
+        <option value="567">Croatian</option>
+        <option value="547">Czech</option>
+        <option value="38">Danish</option>
+        <option value="562">Design & Communication Graphics</option>
+        <option value="17">Dutch</option>
+        <option value="34">Economics</option>
+        <option value="27">Engineering</option>
+        <option value="2">English</option>
+        <option value="552">Estonian</option>
+        <option value="49">Finnish</option>
+        <option value="10">French</option>
+        <option value="5">Geography</option>
+        <option value="11">German</option>
+        <option value="9">Hebrew Studies</option>
+        <option value="4">History (Later Modern)</option>
+        <option value="96">History (Early Modern)</option>
+        <option value="98">Home Economics S & S</option>
+        <option value="551">Hungarian</option>
+        <option value="1">Irish</option>
+        <option value="13">Italian</option>
+        <option value="58">Japanese</option>
+        <option value="6">Latin</option>
+        <option value="549">Latvian</option>
+        <option value="462">Link Modules</option>
+        <option value="550">Lithuanian</option>
+        <option value="3">Mathematics</option>
+        <option value="19">Modern Greek</option>
+        <option value="67">Music</option>
+        <option value="21">Physics</option>
+        <option value="23">Physics & Chemistry</option>
+        <option value="548">Polish</option>
+        <option value="18">Portuguese</option>
+        <option value="220">Religious Education</option>
+        <option value="553">Romanian</option>
+        <option value="99">Russian</option>
+        <option value="554">Slovakian</option>
+        <option value="12">Spanish</option>
+        <option value="39">Swedish</option>
+        <option value="65">Technology</option>
+        <option value="">----</option>
+        <option value="">----JUNIOR CERT----</option>
+        <option value="7">Ancient Greek</option>
+        <option value="41">Art Craft Design</option>
+        <option value="42">Business Studies</option>
+        <option value="218">Civic Social and Political Education</option>
+        <option value="8">Classical Studies</option>
+        <option value="2">English</option>
+        <option value="81">Environ & Social Studies</option>
+        <option value="10">French</option>
+        <option value="5">Geography</option>
+        <option value="11">German</option>
+        <option value="4">History (Later Modern)</option>
+        <option value="52">Home Economics</option>
+        <option value="1">Irish</option>
+        <option value="13">Italian</option>
+        <option value="565">Jewish Studies</option>
+        <option value="6">Latin</option>
+        <option value="47">Material Technology (Wood)</option>
+        <option value="3">Mathematics</option>
+        <option value="54">Metalwork</option>
+        <option value="46">Music</option>
+        <option value="220">Religious Education</option>
+        <option value="57">Science</option>
+        <option value="12">Spanish</option>
+        <option value="48">Technical Graphics</option>
+        <option value="65">Technology</option>
+        <option value="40">Typewriting</option>
+        <option value="">----</option>
+        <option value="">----LEAVING CERT APPLIED----</option>
+        <option value="848">Active Leisure Studies</option>
+        <option value="832">Agriculture / Horticulture</option>
+        <option value="846">Childcare / Community Care</option>
+        <option value="835">Crafts & Design</option>
+        <option value="836">Engineering</option>
+        <option value="810">English and Communication</option>
+        <option value="10">French</option>
+        <option value="66">Gaeilge ChumarsÃ¡ideach</option>
+        <option value="11">German</option>
+        <option value="845">Graphics And Construction Studies</option>
+        <option value="850">Hair And Beauty</option>
+        <option value="833">Hotel / Catering & Tourism</option>
+        <option value="825">Intro. to Information & Comm. Technology</option>
+        <option value="13">Italian</option>
+        <option value="830">Mathematic Applications</option>
+        <option value="847">Office Admin And Customer</option>
+        <option value="816">Sign Language</option>
+        <option value="815">Social Education</option>
+        <option value="12">Spanish</option>
+        <option value="839">Technology</option>
+    </select>
+    <select name="type">
+        <option value="" selected>[Select Exam Type]</option>
+        <option value="">----</option>
+        <option value="exampapers">Exam papers</option>
+        <option value="markingschemes">Marking schemes</option>
+    </select>
+    <select name="year">
+        <option value="" selected>[Select Year]</option>
+        <option value="">----</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+        <option value="2013">2013</option>
+        <option value="2012">2012</option>
+        <option value="2011">2011</option>
+        <option value="2010">2010</option>
+        <option value="2009">2009</option>
+        <option value="2008">2008</option>
+        <option value="2007">2007</option>
+        <option value="2006">2006</option>
+        <option value="2005">2005</option>
+        <option value="2004">2004</option>
+        <option value="2003">2003</option>
+        <option value="2002">2002</option>
+        <option value="2001">2001</option>
+        <option value="2000">2000</option>
+        <option value="1999">1999</option>
+        <option value="1998">1998</option>
+        <option value="1997">1997</option>
+        <option value="1996">1996</option>
+        <option value="1995">1995</option>
+    </select>
+<!--    <label for="year">Year:</label>-->
+<!--    <input type="text" id="year" name="year"><br><br>-->
+    <input type="submit" value="Submit">
+</form>
+<a href="{{ url }}">{{ url }}</a>
+</body>
+</html>
