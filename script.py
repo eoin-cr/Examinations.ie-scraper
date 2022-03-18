@@ -1,7 +1,7 @@
 # script.py
 import requests
 from flask import Flask, render_template, request
-
+from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 
@@ -29,7 +29,7 @@ def scrape(subject, paper_type, exam_type, level, year, language):
                     "MaterialArchive__noTable__sbh__SubjectSelect": "id"}
     subject_request = requests.post(subject_url, data=subject_data)
 
-    print(subject_request.text)
+    # print(subject_request.text)
     subject_request = subject_request.text.split('\n')
     counter = 0
     for line in subject_request:
@@ -53,7 +53,7 @@ def val_to_display(value):
     with open("templates/index.html") as f:
         file = f.read()
 
-    print(file)
+    # print(file)
     file = file.split('\n')
     for line in file:
         # if the value is in the line, get rid of all the html around it, and just get the displayed
@@ -65,8 +65,6 @@ def val_to_display(value):
             # print(line)
             return line
 
-
-# print(val_to_display("10"))
 
 @app.route('/')
 def index():
@@ -86,7 +84,7 @@ def getvalue():
     level = request.form['level']
     year = request.form['year']
     language = request.form['language']
-    print(subject)
+    # print(subject)
 
     url = scrape(subject, paper_type, exam_type, level, year, language)
     # sets the default selected options as the value of the last thing submitted, and display the
@@ -99,4 +97,9 @@ def getvalue():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Debug/Development
+    # app.run(debug=True)
+
+    # Production
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
