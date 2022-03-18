@@ -1,16 +1,19 @@
 # script.py
 import requests
-import webbrowser
 from flask import Flask, render_template, request
 
-
-# TODO: Use js to save selected inputs
 
 app = Flask(__name__)
 
 
 def scrape(subject, paper_type, exam_type, level, year, language):
     url = ""
+
+    # Checks if any of the inputs are empty
+    if not subject or not paper_type or not exam_type or not level or not year or not language:
+        url = "Invalid input, please try again"
+        return url
+
     # Now we can make the request for the papers as we have all the info the user
     # wants
     # Notice how the url here is different.  That was a fucking pain to debug.
@@ -45,13 +48,38 @@ def scrape(subject, paper_type, exam_type, level, year, language):
     return url
 
 
+def val_to_display(value):
+    # Opens the template file
+    with open("templates/index.html") as f:
+        file = f.read()
+
+    print(file)
+    file = file.split('\n')
+    for line in file:
+        # if the value is in the line, get rid of all the html around it, and just get the displayed
+        # text for that value
+        if value in line:
+            line = line.replace(value, "")
+            # print(line)
+            line = line.replace("<option value=\"", "").replace("\">", "").replace("</option>", "")
+            # print(line)
+            return line
+
+
+# print(val_to_display("10"))
+
 @app.route('/')
 def index():
-    return render_template('index.html', test="Testing")
+    return render_template('index.html', test="Testing",  # sets the default selected options as descriptors
+                           S_exam="[Select Exam]", S_lang="[Select Language]", S_level="[Select Exam Level]",
+                           S_subject="[Select Subject]", S_type="[Select Exam Type]", S_year="[Select Year]",
+                           S_exam_V="", S_lang_V="", S_level_V="",
+                           S_subject_V="", S_type_V="", S_year_V="")
 
 
 @app.route('/', methods=['POST'])
 def getvalue():
+    # takes the inputs from the form submitted in index.html
     subject = request.form['subject']
     paper_type = request.form['type']
     exam_type = request.form['exam']
@@ -61,7 +89,13 @@ def getvalue():
     print(subject)
 
     url = scrape(subject, paper_type, exam_type, level, year, language)
-    return render_template('index.html', url=url)
+    # sets the default selected options as the value of the last thing submitted, and display the
+    # proper name of the input
+    return render_template('index.html', url=url, S_exam=val_to_display(exam_type), S_lang=val_to_display(language),
+                           S_level=val_to_display(level), S_subject=val_to_display(subject),
+                           S_type=val_to_display(paper_type), S_year=year,
+                           S_exam_V=exam_type, S_lang_V=language, S_level_V=level,
+                           S_subject_V=subject, S_type_V=paper_type, S_year_V=year)
 
 
 if __name__ == '__main__':

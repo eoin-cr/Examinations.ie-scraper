@@ -9,26 +9,26 @@
 <form name="selection" action="." method="POST">
 <!--    Asset Tag:<br>-->
     <select name="exam">
-        <option value="" selected>[Select Exam]</option>
+        <option value="{{ S_exam_V }}" selected>{{ S_exam }}</option>
         <option value="">----</option>
         <option value="jc">Junior cert</option>
         <option value="lc">Leaving cert</option>
         <option value="lb">Leaving cert applied</option>
     </select>
     <select name="language">
-        <option value="" selected>[Select Language]</option>
+        <option value="{{ S_lang_V }}" selected>{{ S_lang }}</option>
         <option value="">----</option>
         <option value="(EV)">English</option>
         <option value="(IV)">Irish</option>
     </select>
     <select name="level" id="">
-        <option value="" selected>[Select Exam Level]</option>
+        <option value="{{ S_level_V }}" selected>{{ S_level }}</option>
         <option value="">----</option>
         <option value="Higher Level">Higher level</option>
         <option value="Ordinary Level">Ordinary level</option>
     </select>
     <select name="subject">
-        <option value="" selected>[Select Subject]</option>
+        <option value="{{ S_subject_V }}" selected>{{ S_subject }}</option>
         <option value="">----</option>
         <option value="">----LEAVING CERT----</option>
         <option value="32">Accounting</option>
@@ -135,13 +135,13 @@
         <option value="839">Technology</option>
     </select>
     <select name="type">
-        <option value="" selected>[Select Exam Type]</option>
+        <option value="{{ S_type_V }}" selected>{{ S_type }}</option>
         <option value="">----</option>
         <option value="exampapers">Exam papers</option>
         <option value="markingschemes">Marking schemes</option>
     </select>
     <select name="year">
-        <option value="" selected>[Select Year]</option>
+        <option value="{{ S_year_V }}" selected>{{ S_year }}</option>
         <option value="">----</option>
         <option value="2021">2021</option>
         <option value="2020">2020</option>
@@ -171,8 +171,6 @@
         <option value="1996">1996</option>
         <option value="1995">1995</option>
     </select>
-<!--    <label for="year">Year:</label>-->
-<!--    <input type="text" id="year" name="year"><br><br>-->
     <input type="submit" value="Submit">
 </form>
 <a href="{{ url }}">{{ url }}</a>
