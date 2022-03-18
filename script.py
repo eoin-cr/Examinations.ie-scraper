@@ -3,16 +3,8 @@ import requests
 import webbrowser
 from flask import Flask, render_template, request
 
-# import cgi
 
-# form = cgi.FieldStorage()
-# subject = form.getvalue('subject')
-# print(subject)
-# paper_type = form.getvalue('type')
-# exam_type = form.getvalue('exam')
-# level = form.getvalue('level')
-# year = form.getvalue('year')
-# language = form.getvalue('language')
+# TODO: Use js to save selected inputs
 
 app = Flask(__name__)
 
