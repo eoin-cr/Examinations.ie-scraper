@@ -4,5 +4,6 @@ I don't even need to use this website anymore as I've finished the LC but it pis
 I have created a python flask webserver so now a website version of the
 code can be run, which should be handier than using the command line.
 
-Note: The inputs are reset every time the form is submitted.  I understand
-this will get annoying so I'm working on fixing it
+You can access the scraper at https://examinations.eoin-cr.xyz/ .  It 
+should be fully functional now  (and in my opinion is nicer to use than
+the examinations.ie website)
