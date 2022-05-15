@@ -28,6 +28,7 @@ def scrape(subject, paper_type, exam_type, level, year, language):
                     "MaterialArchive__noTable__sbv__SubjectSelect": subject,
                     "MaterialArchive__noTable__sbh__SubjectSelect": "id"}
     subject_request = requests.post(subject_url, data=subject_data)
+    print(subject_url)
 
     # print(subject_request.text)
     subject_request = subject_request.text.split('\n')
@@ -35,17 +36,27 @@ def scrape(subject, paper_type, exam_type, level, year, language):
     for line in subject_request:
         counter += 1
 
+    # the reason for making this array is because sometimes there are multiple
+    # papers for an exam, breaking the old system.  Therefore creating an array
+    # of urls fixes the issue
+    url_arr = ["", "", "", "", ""]
+    arr_count = 0
+
     # Just looking for the lines that match the level and language the user wants
     # and taking that exam paper
     for i in range(counter):
+        # print(counter)
         if language in subject_request[i] and level in subject_request[i]:
-            url += subject_request[i + 2]
-            url = url[8:-31]
+            print(subject_request[i])
+            print(subject_request[i])
+            url_arr[arr_count] = subject_request[i + 2]
+            url_arr[arr_count] = "https://www.examinations.ie/exammaterialarchive/" + url_arr[arr_count][8:-31]
+            arr_count += 1
 
-    if url == "":
-        return "Unable to find exam paper"
-    url = "https://www.examinations.ie/exammaterialarchive/" + url
-    return url
+    if arr_count == 0:
+        url_arr[0] = "Unable to find exam paper"
+        return url_arr
+    return url_arr
 
 
 def val_to_display(value):
@@ -87,9 +98,15 @@ def getvalue():
     # print(subject)
 
     url = scrape(subject, paper_type, exam_type, level, year, language)
+    print(url)
     # sets the default selected options as the value of the last thing submitted, and display the
     # proper name of the input
-    return render_template('index.html', url=url, S_exam=val_to_display(exam_type), S_lang=val_to_display(language),
+
+    # the url1, url2, etc. thing feels like such a bad workaround but it works
+    # so I'm leaving it in for now
+    return render_template('index.html', url1=url[0], url2=url[1], url3=url[2], url4=url[3],
+                           url5=url[4], S_exam=val_to_display(exam_type),
+                           S_lang=val_to_display(language),
                            S_level=val_to_display(level), S_subject=val_to_display(subject),
                            S_type=val_to_display(paper_type), S_year=year,
                            S_exam_V=exam_type, S_lang_V=language, S_level_V=level,
